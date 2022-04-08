@@ -3,56 +3,43 @@ package by.suprun.task4.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextComposite extends AbstractTextComponent {
-    protected List<AbstractTextComponent> componentList = new ArrayList<>();
-    private int size = 0;
+public class TextComposite implements TextComponent {
+    protected List<TextComponent> componentList;
+    private final TextComponentType type;
 
-    public TextComposite(TextComponentType componentType) {
-        super(componentType);
+    public TextComposite(TextComponentType type) {
+        this.type = type;
+        componentList = new ArrayList<>();
     }
 
     @Override
-    public String operation() {
-        String delimiter = componentType.getDelimiter();
-        ArrayList<String> stringArrayList = new ArrayList<>();
-        for(AbstractTextComponent component : componentList){
-            stringArrayList.add(component.operation());
-            stringArrayList.add(delimiter);
-        }
+    public String toString() {
+        String delimiter = type.getDelimiter();
         StringBuilder stringBuilder = new StringBuilder();
-        for (String s : stringArrayList){
-            stringBuilder.append(s);
+        for (TextComponent component : componentList) {
+            stringBuilder.append(component.toString());
+            stringBuilder.append(delimiter);
         }
         return stringBuilder.toString();
     }
 
     @Override
-    public void add(AbstractTextComponent textComponent) {
-        size++;
-        componentList.add(textComponent);
+    public boolean add(TextComponent textComponent) {
+
+        return componentList.add(textComponent);
     }
 
     @Override
-    public void remove(AbstractTextComponent textComponent) {
-        size--;
-        componentList.remove(textComponent);
+    public boolean remove(TextComponent textComponent) {
+        return componentList.remove(textComponent);
     }
 
     @Override
-    public TextComponentType getComponentType() {
-        return super.getComponentType();
+    public TextComponentType getComponentType(){
+        return type;
     }
 
-    @Override
-    public int getSize() {
-        return this.size;
-    }
-
-    public List<AbstractTextComponent> getComponentList() {
+    public List<TextComponent> getComponentList() {
         return componentList;
-    }
-
-    public AbstractTextComponent getComponent(int index){
-        return componentList.get(index);
     }
 }

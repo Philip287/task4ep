@@ -2,10 +2,12 @@ package by.suprun.task4.entity;
 
 public enum TextComponentType {
     TEXT("\n"),
-    PARAGRAPH(" "),
+    PARAGRAPH("\t\n "),
     SENTENCE(" "),
-    WORD(""),
-    SYMBOL("");
+    LEXEME("\u0020"),
+    MATH_EXPRESSION(""),
+    WORD("");
+
 
     private String delimiter;
 

@@ -3,38 +3,44 @@ package by.suprun.task4.entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class SymbolLeaf extends AbstractTextComponent {
+import java.util.List;
+
+public class SymbolLeaf implements TextComponent {
     private static final Logger logger = LogManager.getLogger();
     private char value;
+    private SymbolCompositeType type;
 
-    public SymbolLeaf(char value) {
-        super(TextComponentType.SYMBOL);
+    public SymbolLeaf(char value, SymbolCompositeType type) {
         this.value = value;
-    }
-
-    public SymbolLeaf(TextComponentType componentType) {
-        super(componentType);
+        this.type = type;
     }
 
     @Override
-    public String operation() {
+    public String toString() {
         return String.valueOf(value);
     }
 
     @Override
-    public void add(AbstractTextComponent textComponent) {
+    public boolean add(TextComponent textComponent) {
         logger.warn("Skipped attempt to add component to leaf element");
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void remove(AbstractTextComponent textComponent) {
+    public boolean remove(TextComponent textComponent) {
         logger.warn("Skipped attempt to remove component from leaf element");
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public int getSize() {
-        return 1;
+    public List<TextComponent> getComponentList() {
+        logger.warn("Skipped attempt to get componentList from leaf element");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public TextComponentType getComponentType() {
+        logger.warn("Skipped attempt to get component type from leaf element");
+        throw new UnsupportedOperationException();
     }
 }
