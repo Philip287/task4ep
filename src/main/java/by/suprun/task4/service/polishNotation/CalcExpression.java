@@ -3,9 +3,9 @@ package by.suprun.task4.service.polishNotation;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
-import java.util.Scanner;
 
-public class Ideone {
+public class CalcExpression {
+
     public static Double calc(List<String> postfix) {
         Deque<Double> stack = new ArrayDeque<Double>();
         for (String x : postfix) {
@@ -26,18 +26,5 @@ public class Ideone {
             else stack.push(Double.valueOf(x));
         }
         return stack.pop();
-    }
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String s = in.nextLine();
-        ExpressionParser n = new ExpressionParser();
-        List<String> expression = n.parse(s);
-        boolean flag = n.flag;
-        if (flag) {
-            for (String x : expression) System.out.print(x + " ");
-            System.out.println();
-            System.out.println(calc(expression));
-        }
     }
 }

@@ -11,33 +11,6 @@ public class ExpressionParser {
     private static final String DELIMITERS = "() " + OPERATORS;
     public static boolean flag = true;
 
-    private static boolean isDelimiter(String token) {
-        if (token.length() != 1) return false;
-        for (int i = 0; i < DELIMITERS.length(); i++) {
-            if (token.charAt(0) == DELIMITERS.charAt(i)) return true;
-        }
-        return false;
-    }
-
-    private static boolean isOperator(String token) {
-        if (token.equals("u-")) return true;
-        for (int i = 0; i < OPERATORS.length(); i++) {
-            if (token.charAt(0) == OPERATORS.charAt(i)) return true;
-        }
-        return false;
-    }
-
-    private static boolean isFunction(String token) {
-        return token.equals("sqrt") || token.equals("cube") || token.equals("pow10");
-    }
-
-    private static int priority(String token) {
-        if (token.equals("(")) return 1;
-        if (token.equals("+") || token.equals("-")) return 2;
-        if (token.equals("*") || token.equals("/")) return 3;
-        return 4;
-    }
-
     public static List<String> parse(String infix) {
         List<String> postfix = new ArrayList<>();
         Deque<String> stack = new ArrayDeque<>();
@@ -97,5 +70,33 @@ public class ExpressionParser {
         }
         return postfix;
     }
+
+    private static boolean isDelimiter(String token) {
+        if (token.length() != 1) return false;
+        for (int i = 0; i < DELIMITERS.length(); i++) {
+            if (token.charAt(0) == DELIMITERS.charAt(i)) return true;
+        }
+        return false;
+    }
+
+    private static boolean isOperator(String token) {
+        if (token.equals("u-")) return true;
+        for (int i = 0; i < OPERATORS.length(); i++) {
+            if (token.charAt(0) == OPERATORS.charAt(i)) return true;
+        }
+        return false;
+    }
+
+    private static boolean isFunction(String token) {
+        return token.equals("sqrt") || token.equals("cube") || token.equals("pow10");
+    }
+
+    private static int priority(String token) {
+        if (token.equals("(")) return 1;
+        if (token.equals("+") || token.equals("-")) return 2;
+        if (token.equals("*") || token.equals("/")) return 3;
+        return 4;
+    }
+
 
 }

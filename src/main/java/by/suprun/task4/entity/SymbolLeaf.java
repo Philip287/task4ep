@@ -39,6 +39,11 @@ public class SymbolLeaf implements TextComponent {
     }
 
     @Override
+    public int size() {
+        return 1;
+    }
+
+    @Override
     public TextComponentType getComponentType() {
         logger.warn("Skipped attempt to get component type from leaf element");
         throw new UnsupportedOperationException();

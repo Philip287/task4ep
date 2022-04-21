@@ -1,7 +1,7 @@
 package by.suprun.task4.entity;
 
 public enum TextComponentType {
-    TEXT("\n"),
+    TEXT(""),
     PARAGRAPH("\t\n "),
     SENTENCE(" "),
     LEXEME("\u0020"),

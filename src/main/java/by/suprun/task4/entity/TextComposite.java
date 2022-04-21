@@ -2,6 +2,7 @@ package by.suprun.task4.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TextComposite implements TextComponent {
     protected List<TextComponent> componentList;
@@ -10,6 +11,11 @@ public class TextComposite implements TextComponent {
     public TextComposite(TextComponentType type) {
         this.type = type;
         componentList = new ArrayList<>();
+    }
+
+    @Override
+    public int size() {
+        return componentList.size();
     }
 
     @Override
@@ -35,11 +41,34 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
-    public TextComponentType getComponentType(){
+    public TextComponentType getComponentType() {
         return type;
     }
 
     public List<TextComponent> getComponentList() {
         return componentList;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        TextComposite composite = (TextComposite) obj;
+        return this.type.equals(composite.type) && Objects.equals(this.componentList, composite.componentList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, componentList);
     }
 }
